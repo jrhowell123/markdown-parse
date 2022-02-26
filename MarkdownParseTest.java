@@ -17,6 +17,9 @@ public class MarkdownParseTest {
         String contentsTest = Files.readString(Path.of("test-file.md"));
         String contentsTest1 = Files.readString(Path.of("test-file2.md"));
         String contentsTest2 = Files.readString(Path.of("test-file3.md"));
+        String contentsTestSnippet1 = Files.readString(Path.of("test-fileSnippet1.md"));
+        String contentsTestSnippet2 = Files.readString(Path.of("test-fileSnippet2.md"));
+        String contentsTestSnippet3 = Files.readString(Path.of("test-fileSnippet3.md"));
 
         assertEquals(List.of("https://something.com", "some-page.html"), 
             MarkdownParse.getLinks(contentsTest));
@@ -24,5 +27,11 @@ public class MarkdownParseTest {
             MarkdownParse.getLinks(contentsTest1));
         assertEquals(List.of("weird-page.html"), 
             MarkdownParse.getLinks(contentsTest2));
+        assertEquals(List.of("url.com","`google.com","google.com","ucsd.edu"), 
+            MarkdownParse.getLinks(contentsTestSnippet1));
+        assertEquals(List.of("b.com","a.com(())","example.com"), 
+            MarkdownParse.getLinks(contentsTestSnippet2));
+        assertEquals(List.of("https://www.twitter.com","https://ucsd-cse15l-w22.github.io/","https://cse.ucsd.edu/"), 
+            MarkdownParse.getLinks(contentsTestSnippet3));
     }
 }
