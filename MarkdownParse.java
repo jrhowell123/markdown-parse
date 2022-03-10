@@ -29,6 +29,11 @@ public class MarkdownParse{
         Path fileName = Path.of(args[0]);
         String contents = Files.readString(fileName);
         //System.out.println(contents);
+        File f1 = new File("test-files");
+        Map<String, List<String>> linkMap = getLinks(f1);
+        for (String key:linkMap.keySet()) {
+	        System.out.println(linkMap.get(key));
+        }
         ArrayList<String> links = getLinks(contents);
         System.out.println(links);
     }
